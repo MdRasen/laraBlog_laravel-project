@@ -1,9 +1,9 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\dashboardController;
+use App\Http\Controllers\Admin\categoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +25,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
-    Route::get('/dashboard', [dashboardController::class,'index']);
+    Route::get('/dashboard', [dashboardController::class,'index'])->name('admin.dashboard');
+    Route::get('/create-category', [categoryController::class,'create'])->name('admin.create-category');
+    Route::post('/create-category', [categoryController::class,'createSubmit'])->name('admin.create-category');
+
+    Route::get('/view-category', [categoryController::class,'view'])->name('admin.view-category');
 });
