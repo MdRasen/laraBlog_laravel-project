@@ -28,6 +28,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/dashboard', [dashboardController::class,'index'])->name('admin.dashboard');
     Route::get('/create-category', [categoryController::class,'create'])->name('admin.create-category');
     Route::post('/create-category', [categoryController::class,'createSubmit'])->name('admin.create-category');
-
     Route::get('/view-category', [categoryController::class,'view'])->name('admin.view-category');
+    Route::get('/edit-category/{category_id}', [categoryController::class,'edit'])->name('admin.edit-category');
+    Route::post('/edit-category/{category_id}', [categoryController::class,'editSubmit'])->name('admin.edit-category');
+
+    Route::get('/delete-category/{category_id}', [categoryController::class,'delete'])->name('admin.delete-category');
 });
