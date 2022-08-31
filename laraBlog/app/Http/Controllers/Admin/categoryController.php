@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\category;
 use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Node\File;
 
 class categoryController extends Controller
 {
@@ -20,10 +19,10 @@ class categoryController extends Controller
                 "name"=>"required|string|max:100",
                 "slug"=>"required|string|max:100",
                 "description"=>"required|string|max:200",
-                "image"=>"required|mimes:jpg,png,jpeg",
+                "image"=>"mimes:jpg,png,jpeg",
                 "meta_title"=>"required|string|max:100",
-                "meta_description"=>"required|string|max:200",
-                "meta_keywords"=>"required|string|max:200",
+                "meta_description"=>"nullable|string|max:200",
+                "meta_keywords"=>"nullable|string|max:200",
                 "navbar_status"=>"nullable",
                 "status"=>"nullable",
             ]);
@@ -33,12 +32,13 @@ class categoryController extends Controller
         $category->slug = $req->slug;
         $category->description = $req->description;
 
-        $extension = $req->file('image')->getClientOriginalExtension();
-        $imagename = time().".".$extension;
-
-        $req->file('image')->storeAs('public/category_images', $imagename);
-
-        $category->image = $imagename;
+        if($req->image){
+            $extension = $req->file('image')->getClientOriginalExtension();
+            $imagename = time().".".$extension;
+            $req->file('image')->storeAs('public/category_images', $imagename);
+            $category->image = $imagename;
+        }
+        
         $category->meta_title = $req->meta_title;
         $category->meta_description = $req->meta_description;
         $category->meta_keywords = $req->meta_keywords;
@@ -47,7 +47,7 @@ class categoryController extends Controller
         $category->created_by = Auth::user()->id;;
         $category->save();
 
-        return redirect('admin/view-category')->with('msg', 'Category added successfully!');
+        return redirect('admin/view-category')->with('msg', 'Category has been added successfully!');
     }
 
     public function view(){
@@ -69,8 +69,8 @@ class categoryController extends Controller
                 "description"=>"required|string|max:200",
                 "image"=>"mimes:jpg,png,jpeg",
                 "meta_title"=>"required|string|max:100",
-                "meta_description"=>"required|string|max:200",
-                "meta_keywords"=>"required|string|max:200",
+                "meta_description"=>"nullable|string|max:200",
+                "meta_keywords"=>"nullable|string|max:200",
                 "navbar_status"=>"nullable",
                 "status"=>"nullable",
             ]);
@@ -83,9 +83,10 @@ class categoryController extends Controller
         if($req->image){
             $destination = 'storage/category_images/'.$category->image;
 
-            if (file_exists(public_path($destination))) {
-                unlink($destination);
-              }
+            //Problem deleteing file:
+            // if(file_exists(public_path($destination))) {
+            //     unlink($destination); 
+            //   }
 
             $extension = $req->file('image')->getClientOriginalExtension();
             $imagename = time().".".$extension;

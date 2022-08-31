@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->integer('category_id');
             $table->string('name');
             $table->string('slug');
             $table->mediumText('description');
-            $table->string('image')->nullable();
+            $table->string('yt_iframe')->nullable();
             $table->text('meta_title');
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
-            $table->tinyInteger('navbar_status')->default('0');
             $table->tinyInteger('status')->default('0');
-            $table->Integer('created_by');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('posts');
     }
 };

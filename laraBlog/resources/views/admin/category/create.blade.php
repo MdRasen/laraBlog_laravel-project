@@ -5,7 +5,8 @@
 <div class="container-fluid px-4">
     <div class="card mt-4">
         <div class="card-header">
-            <h4>Create Category</h4>
+            <h4>Create Category <a href="{{route('admin.view-category');}}" class="btn btn-primary float-end">View
+                Categories</a></h4>
         </div>
         <div class="card-body">
 
@@ -23,7 +24,7 @@
                 </div>
                 <div class="mb-2">
                     <label for="category_description">Description:</label>
-                    <textarea name="description"cols="5" rows="5" class="form-control" value="{{old('description')}}"></textarea>
+                    <textarea name="description"cols="5" rows="5" class="form-control">{{old('description')}}</textarea>
                     <p style="color:red;">@error('description')*{{$message}}@enderror</p>
                 </div>
                 <div class="mb-2">
@@ -39,22 +40,22 @@
                 </div>
                 <div class="mb-2">
                     <label for="category_meta_description">Meta Description:</label>
-                    <textarea name="meta_description"cols="2" rows="2" class="form-control" value="{{old('meta_description')}}"></textarea>
+                    <textarea name="meta_description"cols="2" rows="2" class="form-control">{{old('meta_description')}}</textarea>
                     <p style="color:red;">@error('meta_description')*{{$message}}@enderror</p>
                 </div>
                 <div class="mb-2">
                     <label for="category_meta_description">Meta Keywords:</label>
-                    <textarea name="meta_keywords"cols="2" rows="2" class="form-control" value="{{old('meta_keywords')}}"></textarea>
+                    <textarea name="meta_keywords"cols="2" rows="2" class="form-control">{{old('meta_keywords')}}</textarea>
                     <p style="color:red;">@error('meta_keywords')*{{$message}}@enderror</p>
                 </div>
                 <h6>Status Mode:</h6>
                 <div class="row">
                     <div class="col-md-3 mb-2">
-                        <label for="category_navbar_status">Navbar Status:</label>
+                        <label for="category_navbar_status">Navbar Status (Hidden):</label>
                         <input type="checkbox" name="navbar_status">
                     </div>
                     <div class="col-md-3 mb-2">
-                        <label for="category_status">Status:</label>
+                        <label for="category_status">Status (Hidden):</label>
                         <input type="checkbox" name="status">
                     </div>
                     <div class="col-md-6 mb-2">
