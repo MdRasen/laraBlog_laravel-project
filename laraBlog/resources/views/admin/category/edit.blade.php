@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-2">
                     <label for="category_description">Description:</label>
-                    <textarea name="description"cols="5" rows="5" class="form-control" value="{{old('description')}}">{{$category->description}}</textarea>
+                    <textarea name="description"cols="5" rows="5" class="form-control" id="summernote" value="{{old('description')}}">{{$category->description}}</textarea>
                     <p style="color:red;">@error('description')*{{$message}}@enderror</p>
                 </div>
                 <div class="mb-2">

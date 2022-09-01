@@ -83,7 +83,7 @@ class categoryController extends Controller
         if($req->image){
             $destination = 'storage/category_images/'.$category->image;
 
-            //Problem deleteing file:
+            //Problem deleting file:
             // if(file_exists(public_path($destination))) {
             //     unlink($destination); 
             //   }
