@@ -15,7 +15,7 @@
                 </div>
             @endif
             <div class="table-responsive-sm">
-                <table class="table table-bordered text-center">
+                <table id="myTable" class="table table-bordered text-center">
                     <thead>
                         <tr>
                             <th>Image</th>

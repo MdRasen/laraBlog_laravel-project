@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'laraBlog - Category')
+@section('title', 'laraBlog - User')
 @section('content')
 
 <div class="container-fluid px-4">
@@ -14,7 +14,7 @@
                 </div>
             @endif
             <div class="table-responsive-sm">
-                <table class="table table-bordered text-center">
+                <table id="myTable" class="table table-bordered text-center">
                     <thead>
                         <tr>
                             <th>ID</th>

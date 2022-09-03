@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'laraBlog - Add Category')
+@section('title', 'laraBlog - Create Category')
 @section('content')
 
 <div class="container-fluid px-4">
