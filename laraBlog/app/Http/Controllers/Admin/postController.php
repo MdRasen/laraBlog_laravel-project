@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\category;
 use App\Models\post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class postController extends Controller
 {
@@ -32,7 +33,7 @@ class postController extends Controller
         $post = new post();
         $post->category_id = $req->category_id;
         $post->name = $req->name;
-        $post->slug = $req->slug;
+        $post->slug = Str::slug($req->slug);
         $post->description = $req->description;
         $post->yt_iframe = $req->yt_iframe;
         $post->meta_title = $req->meta_title;
@@ -73,7 +74,7 @@ class postController extends Controller
         $post = post::where('id', '=', $post_id)->first();
         $post->category_id = $req->category_id;
         $post->name = $req->name;
-        $post->slug = $req->slug;
+        $post->slug = Str::slug($req->slug);
         $post->description = $req->description;
         $post->yt_iframe = $req->yt_iframe;
         $post->meta_title = $req->meta_title;

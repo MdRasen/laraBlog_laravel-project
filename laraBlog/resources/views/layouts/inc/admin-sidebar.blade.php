@@ -3,36 +3,36 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="{{route('admin.dashboard');}}">
+                <a class="nav-link {{Request::is('admin/dashboard') ? 'active':''}}" href="{{route('admin.dashboard');}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+                <a class="nav-link {{Request::is('admin/create-category') || Request::is('admin/view-category') ? 'collapsed active':'collapsed'}}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Category
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseCategory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse {{Request::is('admin/create-category') || Request::is('admin/view-category') ? 'show':''}}" id="collapseCategory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{route('admin.create-category');}}">Create Category</a>
-                        <a class="nav-link" href="{{route('admin.view-category');}}">View Category</a>
+                        <a class="nav-link {{Request::is('admin/create-category') ? 'active':''}}" href="{{route('admin.create-category');}}">Create Category</a>
+                        <a class="nav-link {{Request::is('admin/view-category') ? 'active':''}}" href="{{route('admin.view-category');}}">View Category</a>
                     </nav>
                 </div>
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePost" aria-expanded="false" aria-controls="collapsePost">
+                <a class="nav-link {{Request::is('admin/create-post') || Request::is('admin/view-post') ? 'collapsed active':'collapsed'}}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePost" aria-expanded="false" aria-controls="collapsePost">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Post
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapsePost" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse {{Request::is('admin/create-post') || Request::is('admin/view-post') ? 'show':''}}" id="collapsePost" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{route('admin.create-post');}}">Create Post</a>
-                        <a class="nav-link" href="{{route('admin.view-post');}}">View Post</a>
+                        <a class="nav-link {{Request::is('admin/create-post') ? 'active':''}}" href="{{route('admin.create-post');}}">Create Post</a>
+                        <a class="nav-link {{Request::is('admin/view-post') ? 'active':''}}" href="{{route('admin.view-post');}}">View Post</a>
                     </nav>
                 </div>
 
-                <a class="nav-link" href="{{route('admin.users');}}">
+                <a class="nav-link {{Request::is('admin/users') ? 'active':''}}" href="{{route('admin.users');}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Users
                 </a>

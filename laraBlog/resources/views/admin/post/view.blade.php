@@ -18,6 +18,7 @@
                 <table id="myTable" class="table table-bordered text-center">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Post Name</th>
                             <th>Category</th>
                             <th>Status</th>
@@ -28,6 +29,7 @@
                     <tbody>
                         @foreach ($posts as $item)
                         <tr>
+                            <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->category->name}}</td>
                             <td>{{$item->status == 0 ? "Visible":"Hidden"}}</td>

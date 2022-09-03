@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class categoryController extends Controller
 {
@@ -29,7 +30,7 @@ class categoryController extends Controller
 
         $category = new category();
         $category->name = $req->name;
-        $category->slug = $req->slug;
+        $category->slug = Str::slug($req->slug);
         $category->description = $req->description;
 
         if($req->image){
@@ -77,7 +78,7 @@ class categoryController extends Controller
 
         $category = category::where('id', '=', $category_id)->first();
         $category->name = $req->name;
-        $category->slug = $req->slug;
+        $category->slug = Str::slug($req->slug);
         $category->description = $req->description;
 
         if($req->image){
