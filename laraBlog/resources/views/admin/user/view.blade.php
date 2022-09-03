@@ -5,8 +5,7 @@
 <div class="container-fluid px-4">
     <div class="card mt-4">
         <div class="card-header">
-            <h4>View Category <a href="{{route('admin.create-category');}}" class="btn btn-primary float-end">Add
-                    Category</a></h4>
+            <h4>View Users <a href="{{route('admin.dashboard');}}" class="btn btn-primary float-end">Go Back</a></h4>
         </div>
         <div class="card-body">
             @if (session('msg'))
@@ -18,25 +17,29 @@
                 <table class="table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Category Name</th>
-                            <th>Status</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Created At</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $item)
+                        @foreach ($users as $item)
     
                         <tr>
-                            <td> <img src="{{asset('storage/category_images')}}/{{$item->image}}" alt="Category image" height="50px" width="50px"></td>
+                            <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->status == 0 ? "Visible":"Hidden"}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->role_as == 0 ? "User":"Admin"}}</td>
+                            <td>{{$item->created_at}}</td>
                             <td>
-                                <a href="{{route('admin.edit-category', ['category_id'=>$item->id])}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('admin.edit-user', ['user_id'=>$item->id])}}" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <a href="{{route('admin.delete-category', ['category_id'=>$item->id])}}" class="btn btn-danger">Delete</a>
+                                <a href="{{route('admin.delete-user', ['user_id'=>$item->id])}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                             
