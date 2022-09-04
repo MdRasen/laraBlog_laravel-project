@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\categoryController;
 use App\Http\Controllers\Admin\postController;
-use App\Http\Controllers\Admin\userController;
+use App\Http\Controllers\Public\userController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +18,6 @@ use App\Http\Controllers\Admin\userController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
@@ -51,3 +48,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::post('/edit-user/{user_id}', [userController::class,'editSubmit'])->name('admin.edit-user');
     Route::get('/delete-user/{user_id}', [userController::class,'delete'])->name('admin.delete-user');
 });
+
+//For - Public
+Route::get('/', [userController::class,'index'])->name('public.index');
