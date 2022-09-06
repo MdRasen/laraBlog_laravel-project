@@ -102,6 +102,7 @@
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
   <!-- Icon Font Css -->
   <link rel="stylesheet" href="{{asset('plugins/themify/css/themify-icons.css')}}">
+  <link rel="stylesheet" href="plugins/fontawesome/css/all.css">
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{asset('assets/css/public-style.css')}}">
 
@@ -114,7 +115,22 @@
         @yield('content')
     </main>
 
-    @include('layouts.inc.public-footer') 
+    @include('layouts.inc.public-footer')
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+
+    <!-- Bootstrap 4.3.1 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    <script src="js/script.js"></script>
 
 </body>
 </html>

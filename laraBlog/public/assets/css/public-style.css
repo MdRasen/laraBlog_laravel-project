@@ -925,7 +925,7 @@ h3.quote::before {
 
 .latest-blog {
   position: relative;
-  padding-bottom: 150px;
+  padding-bottom: 50px;
 }
 
 .mt-70 {
@@ -1277,7 +1277,7 @@ h3.quote::before {
     display: block;
   }
   .navbar-toggler {
-    color: #fff;
+    color: #fff !important;
   }
   .slider .block h1 {
     font-size: 28px;

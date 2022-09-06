@@ -49,5 +49,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/delete-user/{user_id}', [userController::class,'delete'])->name('admin.delete-user');
 });
 
-//For - Public
-Route::get('/', [userController::class,'index'])->name('public.index');
+    //For - Public
+    Route::get('/', [userController::class,'index'])->name('public.index');
+    Route::get('category/{category_slug}', [userController::class,'categoryPosts'])->name('public.category-posts');
