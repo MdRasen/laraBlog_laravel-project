@@ -20,7 +20,7 @@ class categoryController extends Controller
                 "name"=>"required|string|max:100",
                 "slug"=>"required|string|max:100",
                 "description"=>"required|string|max:200",
-                "image"=>"mimes:jpg,png,jpeg",
+                "image"=>"required|mimes:jpg,png,jpeg",
                 "meta_title"=>"required|string|max:100",
                 "meta_description"=>"nullable|string|max:200",
                 "meta_keywords"=>"nullable|string|max:200",

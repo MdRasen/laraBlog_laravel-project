@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\categoryController;
 use App\Http\Controllers\Admin\postController;
-use App\Http\Controllers\Public\userController;
+use App\Http\Controllers\Admin\userController;
+use App\Http\Controllers\Public\publicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,5 +51,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
 });
 
     //For - Public
-    Route::get('/', [userController::class,'index'])->name('public.index');
-    Route::get('category/{category_slug}', [userController::class,'categoryPosts'])->name('public.category-posts');
+    Route::get('/', [publicController::class,'index'])->name('public.index');
+    Route::get('category/{category_slug}', [publicController::class,'categoryPosts'])->name('public.category-posts');
+    Route::get('{category_slug}/{post_slug}', [publicController::class,'viewpost'])->name('public.view-post');

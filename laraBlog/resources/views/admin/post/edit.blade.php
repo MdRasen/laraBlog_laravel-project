@@ -9,7 +9,7 @@
                     Posts</a></h4>
         </div>
         <div class="card-body">
-            <form action="{{route('admin.edit-post', ['post_id'=>$post->id])}}" method="POST">
+            <form action="{{route('admin.edit-post', ['post_id'=>$post->id])}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-2">
                     <label for="post_category_id">Post Category:</label>
@@ -34,6 +34,18 @@
                     <label for="category_description">Description:</label>
                     <textarea name="description"cols="5" rows="5" class="form-control" id="summernote" value="{{old('description')}}">{{$post->description}}</textarea>
                     <p style="color:red;">@error('description')*{{$message}}@enderror</p>
+                </div>
+                <div class="mb-2">
+                    <div class="row">
+                        <div class="col-4">
+                            <img class="img-fluid img-thumbnail" src="{{asset('storage/post_images')}}/{{$post->image}}" alt="featured image" width="150px"> <br>
+                        </div>
+                        <div class="col-8 pt-2">
+                            <label for="post_image">Featured Image:</label>
+                            <input type="file" name="image" class="form-control" value="{{$post->image}}">
+                            <p style="color:red;">@error('image')*{{$message}}@enderror</p>
+                        </div>
+                    </div>
                 </div>
                 <h6>Meta Tags:</h6>
                 <div class="mb-2">

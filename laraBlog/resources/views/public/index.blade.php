@@ -17,15 +17,15 @@
 			@foreach ($latestposts as $item)
                 <div class="col-lg-4 col-md-6 mb-5">
                     <div class="card bg-transparent border-0">
-                        <img src="{{asset('assets/images/blog/1.jpg')}}" alt="image" class="img-fluid rounded">
+                        <img src="{{asset('storage/post_images')}}/{{$item->image}}" alt="image" class="img-fluid rounded" style="width: auto; height: 195px;">
                         <div class="card-body mt-2">
                             <div>
-                                <a href="#" class="text-white-50">Design<span class="ml-2 mr-2">/</span></a>
-                                <a href="#"  class="text-white-50">Ui/Ux<span class="ml-2">/</span></a>
-                                <a href="#" class="text-white-50 ml-2"><i class="fa fa-user mr-2"></i>admin</a>
+                                <a href="#" class="text-white-50">Latest Blog<span class="ml-2 mr-2">/</span></a>
+                                <a href="#"  class="text-white-50">{{$item->category->name}}<span class="ml-2">/</span></a>
+                                <a href="#" class="text-white-50 ml-2"><i class="fa fa-user mr-2"></i>{{$item->user->name}}</a>
                             </div> 
-                            <h3 class="mt-3 mb-5 lh-36"><a href="#" class="text-white ">{{$item->name}}</a></h3>
-                            <a href="blog-single.html" class="btn btn-small btn-solid-border btn-round-full text-white">Learn More</a>
+                            <h3 class="mt-3 mb-5 lh-36"><a href="{{route('public.view-post', ['category_slug'=>$item->category->slug, 'post_slug'=>$item->slug])}}" class="text-white ">{{$item->name}}</a></h3>
+                            <a href="{{route('public.view-post', ['category_slug'=>$item->category->slug, 'post_slug'=>$item->slug])}}" class="btn btn-small btn-solid-border btn-round-full text-white">Learn More</a>
                         </div>
                     </div>
 			    </div>
@@ -64,18 +64,18 @@
 
         <div class="row justify-content-center">
 	@foreach ($otherposts as $item)
-    <div class="col-lg-4 col-md-4 mb-5">
+    <div class="col-lg-4 col-md-4 mb-5" style="max-width: 80ch; padding: 20px; border: 1px solid #fed;">
 		<div class="blog-item">
-			<img src="{{asset('assets/images/blog/3.jpg')}}" alt="" class="img-fluid rounded">
+			<img src="{{asset('storage/post_images')}}/{{$item->image}}" alt="image" class="img-fluid rounded" style="width: auto; height: 205px;">
 			<div class="blog-item-content bg-white p-2">
 				<div class="bg-gray pt-2">
-					<span class="text-muted text-capitalize m-1"><i class="ti-pencil-alt m-1"></i>Creativity</span>
+					<span class="text-muted text-capitalize m-1"><i class="ti-pencil-alt m-1"></i>{{$item->category->name}}</span>
 					<span class="text-muted text-capitalize m-1"><i class="ti-comment m-1"></i>5 Comments</span> <br>
-					<span class="text-black text-capitalize m-1"><i class="ti-time m-1"></i> 28th January</span>
+					<span class="text-black text-capitalize m-1"><i class="ti-time m-1"></i>{{$item->created_at->format('M d, Y')}}</span>
 				</div> 
-				<h3 class="m-2"><a href="blog-single.html">Improve design with typography?</a></h3>
-				<p class="m-2">Non illo quas blanditiis repellendus laboriosam minima animi. Consectetur accusantium pariatur repudiandae!</p>
-				<a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn More</a>
+				<h3 class="m-2"><a href="{{route('public.view-post', ['category_slug'=>$item->category->slug, 'post_slug'=>$item->slug])}}">{{$item->name}}</a></h3>
+				<p class="m-2" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;">{{$item->meta_description}}</p>
+				<a href="{{route('public.view-post', ['category_slug'=>$item->category->slug, 'post_slug'=>$item->slug])}}" class="btn btn-small btn-main btn-round-full">Learn More</a>
 			</div>
 		</div>
 	</div>

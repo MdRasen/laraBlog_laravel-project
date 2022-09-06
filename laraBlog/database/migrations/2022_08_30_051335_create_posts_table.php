@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->mediumText('description');
-            $table->string('yt_iframe')->nullable();
+            $table->string('image')->nullable();
             $table->text('meta_title');
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();

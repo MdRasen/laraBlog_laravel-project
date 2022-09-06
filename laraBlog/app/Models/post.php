@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\category;
+use App\Models\user;
+
 
 class post extends Model
 {
@@ -18,7 +20,7 @@ class post extends Model
         'name',
         'slug',
         'description',
-        'yt_iframe',
+        'image',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -28,5 +30,9 @@ class post extends Model
 
     public function category(){
         return $this->belongsTo(category::class, 'category_id', 'id');
+    }
+
+    public function user(){
+        return $this->belongsTo(user::class, 'created_by', 'id');
     }
 }

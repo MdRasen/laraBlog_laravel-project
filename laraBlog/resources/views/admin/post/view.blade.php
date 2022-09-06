@@ -19,6 +19,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Featured Image</th>
                             <th>Post Name</th>
                             <th>Category</th>
                             <th>Status</th>
@@ -30,6 +31,9 @@
                         @foreach ($posts as $item)
                         <tr>
                             <td>{{$item->id}}</td>
+                            <td>
+                                <img class="img-fluid" src="{{asset('storage/post_images')}}/{{$item->image}}" alt="featured image" width="100px">
+                            </td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->category->name}}</td>
                             <td>{{$item->status == 0 ? "Visible":"Hidden"}}</td>

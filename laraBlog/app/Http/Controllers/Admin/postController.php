@@ -23,7 +23,7 @@ class postController extends Controller
                 "name"=>"required|string|max:80",
                 "slug"=>"required|string|max:80",
                 "description"=>"required|string",
-                "yt_iframe"=>"nullable",
+                "image"=>"required|mimes:jpg,png,jpeg",
                 "meta_title"=>"required|string|max:80",
                 "meta_description"=>"nullable|string|max:500",
                 "meta_keywords"=>"nullable|string|max:200",
@@ -35,7 +35,12 @@ class postController extends Controller
         $post->name = $req->name;
         $post->slug = Str::slug($req->slug);
         $post->description = $req->description;
-        $post->yt_iframe = $req->yt_iframe;
+        if($req->image){
+            $extension = $req->file('image')->getClientOriginalExtension();
+            $imagename = time().".".$extension;
+            $req->file('image')->storeAs('public/post_images', $imagename);
+            $post->image = $imagename;
+        }
         $post->meta_title = $req->meta_title;
         $post->meta_description = $req->meta_description;
         $post->meta_keywords = $req->meta_keywords;
@@ -64,7 +69,7 @@ class postController extends Controller
             "name"=>"required|string|max:80",
             "slug"=>"required|string|max:80",
             "description"=>"required|string",
-            "yt_iframe"=>"nullable",
+            "image"=>"mimes:jpg,png,jpeg",
             "meta_title"=>"required|string|max:80",
             "meta_description"=>"nullable|string|max:500",
             "meta_keywords"=>"nullable|string|max:200",
@@ -76,7 +81,19 @@ class postController extends Controller
         $post->name = $req->name;
         $post->slug = Str::slug($req->slug);
         $post->description = $req->description;
-        $post->yt_iframe = $req->yt_iframe;
+        if($req->image){
+            $destination = 'storage/post_images/'.$post->image;
+
+            //Problem deleting file:
+            // if(file_exists(public_path($destination))) {
+            //     unlink($destination); 
+            //   }
+
+            $extension = $req->file('image')->getClientOriginalExtension();
+            $imagename = time().".".$extension;
+            $req->file('image')->storeAs('public/post_images', $imagename);
+            $post->image = $imagename;
+        }
         $post->meta_title = $req->meta_title;
         $post->meta_description = $req->meta_description;
         $post->meta_keywords = $req->meta_keywords;

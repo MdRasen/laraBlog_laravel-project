@@ -117,12 +117,9 @@
 
     @include('layouts.inc.public-footer')
 
-
     <!-- 
     Essential Scripts
     =====================================-->
-
-    
     <!-- Main jQuery -->
     <script src="plugins/jquery/jquery.js"></script>
 

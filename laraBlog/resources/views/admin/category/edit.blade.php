@@ -27,9 +27,16 @@
                     <p style="color:red;">@error('description')*{{$message}}@enderror</p>
                 </div>
                 <div class="mb-2">
-                    <label for="category_image">Image:</label>
-                    <input type="file" name="image" class="form-control" value="{{$category->image}}">
-                    <p style="color:red;">@error('image')*{{$message}}@enderror</p>
+                    <div class="row">
+                        <div class="col-4">
+                            <img class="img-fluid img-thumbnail" src="{{asset('storage/category_images')}}/{{$category->image}}" alt="category image" width="150px"> <br>
+                        </div>
+                        <div class="col-8 pt-2">
+                            <label for="category_image">Category Image:</label>
+                            <input type="file" name="image" class="form-control" value="{{$category->image}}">
+                            <p style="color:red;">@error('image')*{{$message}}@enderror</p>
+                        </div>
+                    </div>
                 </div>
                 <h6>Meta Tags:</h6>
                 <div class="mb-2">

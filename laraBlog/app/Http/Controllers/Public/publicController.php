@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\category;
 use App\Models\post;
 
-class userController extends Controller
+class publicController extends Controller
 {
     public function index(){
 
@@ -28,5 +28,24 @@ class userController extends Controller
             return redirect('/');
         }
 
+    }
+
+    public function viewpost($category_slug, $post_slug){
+
+        $category = category::where('slug', '=', $category_slug)->first();
+        if($category){
+
+            $post = post::where('category_id', '=', $category->id)
+            ->where('slug', '=', $post_slug)->where('status', '=', '0')
+            ->first();
+
+            if($post){
+                $latestposts = post::where('status', '=', '0')->orderBy('created_at' , 'DESC')->get()->take(6);
+                return view('public.viewpost', compact('latestposts', 'post'));
+            }
+        }
+        else{
+            return redirect('/');
+        }
     }
 }

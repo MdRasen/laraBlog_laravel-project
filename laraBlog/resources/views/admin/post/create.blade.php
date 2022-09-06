@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
 
-            <form action="{{route('admin.create-post')}}" method="POST">
+            <form action="{{route('admin.create-post')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-2">
                     <label for="post_category_id">Post Category:</label>
@@ -38,9 +38,9 @@
                     <p style="color:red;">@error('description')*{{$message}}@enderror</p>
                 </div>
                 <div class="mb-2">
-                    <label for="post_yt_iframe">YT_IFrame:</label>
-                    <textarea name="yt_iframe"cols="5" rows="5" class="form-control">{{old('yt_iframe')}}</textarea>
-                    <p style="color:red;">@error('yt_iframe')*{{$message}}@enderror</p>
+                    <label for="post_image">Featured Image:</label>
+                    <input type="file" name="image" class="form-control" value="{{old('image')}}">
+                    <p style="color:red;">@error('image')*{{$message}}@enderror</p>
                 </div>
                 <h6>Meta Tags:</h6>
                 <div class="mb-2">

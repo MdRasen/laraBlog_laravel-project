@@ -2,7 +2,7 @@
 @section('title', "laraBlog - $category->name")
 @section('content')
 
-<div class="main-wrapper ">
+<div class="main-wrapper">
     <section class="page-title bg-1">
         <div class="container">
             <div class="row">
@@ -29,19 +29,19 @@
                 <div class="col-lg-8">
                     <div class="row">
                         @foreach ($posts as $item)
-                        <div class="col-lg-6 col-md-6 mb-5">
+                        <div class="col-lg-6 col-md-6 mb-5" style="max-width: 80ch; padding: 20px; border: 1px solid #fed;">
                             <div class="blog-item">
-                                <img src="{{asset('assets/images/blog/3.jpg')}}" alt="" class="img-fluid rounded">
+                                <img src="{{asset('storage/post_images')}}/{{$item->image}}" alt="image" class="img-fluid rounded" style="width: auto; height: 205px;">
                                 <div class="blog-item-content bg-white p-4">
                                     <div class=" py-1 px-2">
                                         <a href="#"><span class="text-muted text-capitalize mr-3"><i
-                                            class="ti-pencil-alt mr-2"></i>Admin</span></a> | 
-                                        <span class="text-muted text-capitalize mr-3 ml-2">  {{$item->created_at->format('d-m-Y')}}</span>
+                                            class="ti-pencil-alt mr-2"></i>{{$item->user->name}}</span></a> | 
+                                        <span class="text-muted text-capitalize mr-3 ml-2">  {{$item->created_at->format('M d, Y')}}</span>
                                     </div>
-                                    <h3 class="mt-3 mb-3"><a href="blog-single.html">{{$item->name}}</a>
+                                    <h3 class="mt-3 mb-3"><a href="{{route('public.view-post', ['category_slug'=>$item->category->slug, 'post_slug'=>$item->slug])}}">{{$item->name}}</a>
                                     </h3>
-                                    <p class="mb-4">{{$item->meta_description}}</p>
-                                    <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">Learn
+                                    <p class="mb-4" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;">{{$item->meta_description}}</p>
+                                    <a href="{{route('public.view-post', ['category_slug'=>$item->category->slug, 'post_slug'=>$item->slug])}}" class="btn btn-small btn-main btn-round-full">Learn
                                         More</a>
                                 </div>
                             </div>
@@ -86,10 +86,10 @@
                             <h5>Latest Posts</h5>
                             @foreach ($latestposts as $item)
                                 <div class="media border-bottom py-3">
-                                <a href="#"><img class="mr-4" src="{{asset('assets/images/blog/1.jpg')}}" alt="" width="100px;"></a>
+                                <a href="#"><img class="mr-4" src="{{asset('storage/post_images')}}/{{$item->image}}" alt="image" class="img-fluid rounded" style="width: auto; height: 40px;"></a>
                                 <div class="media-body">
-                                    <h6 class="my-2"><a href="#">{{$item->name}}</a></h6>
-                                    <span class="text-sm text-muted">{{$item->created_at}}</span>
+                                    <h6 class="my-2"><a href="{{route('public.view-post', ['category_slug'=>$item->category->slug, 'post_slug'=>$item->slug])}}">{{$item->name}}</a></h6>
+                                    <span class="text-sm text-muted">{{$item->created_at->format('M d, Y')}}</span>
                                 </div>
                             </div>
                             @endforeach
