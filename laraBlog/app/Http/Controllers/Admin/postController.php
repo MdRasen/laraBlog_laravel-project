@@ -28,7 +28,11 @@ class postController extends Controller
                 "meta_description"=>"nullable|string|max:500",
                 "meta_keywords"=>"nullable|string|max:200",
                 "status"=>"nullable",
-            ]);
+            ],
+            [
+                'category_id.required' => 'No category, Create one first.',
+            ]
+        );
 
         $post = new post();
         $post->category_id = $req->category_id;

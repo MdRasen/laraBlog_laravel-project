@@ -65,7 +65,7 @@
                                 </button>
 
                                 <button type="submit" class="btn btn-secondary">
-                                    <a href="{{ route('register') }}">
+                                    <a class="text-white" href="{{ route('register') }}">
                                         {{ __('Create an account?') }}
                                     </a>
                                 </button>

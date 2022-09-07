@@ -65,7 +65,6 @@
 					</ul>
 			  </li> --}}
 
-
 			  {{-- Generated from categories --}}
 			  @php
 				  $categories = App\models\category::all();
@@ -75,7 +74,8 @@
 			  	<li class="nav-item"><a class="nav-link" href="{{route('public.category-posts', ['category_slug'=>$item->slug])}}">{{$item->name}}</a></li>				  
 			  @endforeach
 
-			   <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+			   {{-- <li class="nav-item"><a class="nav-link" href="#">Contact</a></li> --}}
+
 			</ul>
 
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">

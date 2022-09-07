@@ -1277,7 +1277,7 @@ h3.quote::before {
     display: block;
   }
   .navbar-toggler {
-    color: #fff !important;
+    color: #fff;
   }
   .slider .block h1 {
     font-size: 28px;
