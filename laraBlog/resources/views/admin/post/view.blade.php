@@ -41,7 +41,31 @@
                                 <a href="{{route('admin.edit-post', ['post_id'=>$item->id])}}" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <a href="{{route('admin.delete-post', ['post_id'=>$item->id])}}" class="btn btn-danger">Delete</a>
+                                <button type="button" value="{{$item->id}}" class="btn btn-danger deletePostBtn">Delete</button>
+
+                                 <!-- Modal -->
+                                 <div class="modal fade" id="deleteModal" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                     <form action="{{route('admin.delete-post')}}" method="POST">
+                                        @csrf
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">Are you sure you want to delete?</div>
+                                            <input type="hidden" id="post_id" name="post_id" class="form-control">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                     </form>
+                                 </div>
+
                             </td>
                         </tr>
                             
@@ -53,4 +77,17 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready( function () {
+            $('.deletePostBtn').click(function (e){
+                e.preventDefault();
+                var post_id =  $(this).val();
+                $('#post_id').val(post_id);
+                $('#deleteModal').modal('show');
+            });
+        });
+    </script>
 @endsection

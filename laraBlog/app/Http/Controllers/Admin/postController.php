@@ -104,8 +104,8 @@ class postController extends Controller
         return redirect('admin/view-post')->with('msg', 'Post has been updated successfully!');
     }
 
-    public function delete($post_id){
-        $post = post::where('id', '=', $post_id)->delete();
+    public function delete(Request $req){
+        $post = post::where('id', '=', $req->post_id)->delete();
         return redirect('admin/view-post')->with('msg', 'Post has been deleted successfully!');
     }
 }

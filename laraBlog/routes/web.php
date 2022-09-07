@@ -31,7 +31,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/view-category', [categoryController::class,'view'])->name('admin.view-category');
     Route::get('/edit-category/{category_id}', [categoryController::class,'edit'])->name('admin.edit-category');
     Route::post('/edit-category/{category_id}', [categoryController::class,'editSubmit'])->name('admin.edit-category');
-    Route::get('/delete-category/{category_id}', [categoryController::class,'delete'])->name('admin.delete-category');
+    Route::post('/delete-category', [categoryController::class,'delete'])->name('admin.delete-category');
 
     //
 
@@ -40,7 +40,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/view-post', [postController::class,'view'])->name('admin.view-post');
     Route::get('/edit-post/{post_id}', [postController::class,'edit'])->name('admin.edit-post');
     Route::post('/edit-post/{post_id}', [postController::class,'editSubmit'])->name('admin.edit-post');
-    Route::get('/delete-post/{post_id}', [postController::class,'delete'])->name('admin.delete-post');
+    Route::post('/delete-post', [postController::class,'delete'])->name('admin.delete-post');
 
     //
 

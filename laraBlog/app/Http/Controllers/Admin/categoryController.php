@@ -104,8 +104,8 @@ class categoryController extends Controller
         return redirect('admin/view-category')->with('msg', 'Category has been updated successfully!');
     }
 
-    public function delete($category_id){
-        $category = category::where('id', '=', $category_id)->delete();
+    public function delete(Request $req){
+        $category = category::where('id', '=', $req->category_id)->delete();
         return redirect('admin/view-category')->with('msg', 'Category has been deleted successfully!');
     }
 }
