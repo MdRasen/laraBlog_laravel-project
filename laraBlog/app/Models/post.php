@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\category;
 use App\Models\user;
+use App\Models\comment;
 
 
 class post extends Model
@@ -34,5 +35,9 @@ class post extends Model
 
     public function user(){
         return $this->belongsTo(user::class, 'created_by', 'id');
+    }
+
+    public function comments(){
+        return $this->hasMany(comment::class, 'post_id', 'id');
     }
 }

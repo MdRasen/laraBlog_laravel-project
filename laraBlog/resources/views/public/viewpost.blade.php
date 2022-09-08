@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row">
-                        <div class="col-lg-12 mb-5">
+                        <div class="col-lg-12 mb-3">
                             <div class="single-blog-item">
                                 <img src="{{asset('storage/post_images')}}/{{$post->image}}" alt="image" class="img-fluid rounded">
 
@@ -91,83 +91,60 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-lg-12 mb-5">
+                        <div class="col-lg-12 mb-3">
                             <div class="comment-area card border-0 p-5">
-                                <h4 class="mb-4">2 Comments</h4>
+                                <h4 class="mb-1">{{$numofcomments}} Comments</h4>
                                 <ul class="comment-tree list-unstyled">
-                                    <li class="mb-5">
-                                        <div class="comment-area-box">
-                                            <img alt="" src="images/blog/test1.jpg"
-                                                class="img-fluid float-left mr-3 mt-2">
 
-                                            <h5 class="mb-1">Philip W</h5>
-                                            <span>United Kingdom</span>
-
-                                            <div
-                                                class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">
-                                                <a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply |</a>
-                                                <span class="date-comm">Posted October 7, 2018 </span>
-                                            </div>
-
-                                            <div class="comment-content mt-3">
-                                                <p>Some consultants are employed indirectly by the client via a
-                                                    consultancy staffing company, a company that provides consultants on
-                                                    an agency basis. </p>
-                                            </div>
-                                        </div>
-                                    </li>
-
+                                    @foreach ($comments as $item)
                                     <li>
                                         <div class="comment-area-box">
-                                            <img alt="" src="images/blog/test2.jpg"
-                                                class="mt-2 img-fluid float-left mr-3">
+                                            <img alt="" src="https://cdn.icon-icons.com/icons2/2574/PNG/512/profile_picture_user_icon_153847.png"
+                                                class="mt-2 img-fluid float-left mr-3" style="height: 50px;">
 
-                                            <h5 class="mb-1">Philip W</h5>
-                                            <span>United Kingdom</span>
-
-                                            <div
-                                                class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">
-                                                <a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply |</a>
-                                                <span class="date-comm">Posted October 7, 2018</span>
-                                            </div>
+                                            <span class="mb-1 text-muted">{{$item->name}}</span> |
+                                            <span>Posted {{$item->created_at->format('M d, Y')}}</span>
 
                                             <div class="comment-content mt-3">
-                                                <p>Some consultants are employed indirectly by the client via a
-                                                    consultancy staffing company, a company that provides consultants on
-                                                    an agency basis. </p>
+                                                <p>{{$item->comment}}</p>
                                             </div>
                                         </div>
                                     </li>
+                                    @endforeach
+
                                 </ul>
                             </div>
-                        </div> --}}
+                        </div>
 
-                        {{-- <div class="col-lg-12">
-                            <form class="contact-form bg-white rounded p-5" id="comment-form">
+                        <div class="col-lg-12">
+                            <form class="contact-form bg-white rounded p-5" action="{{route('public.comment-submit')}}" method="POST">
+                                @csrf
                                 <h4 class="mb-4">Write a comment</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="name" id="name"
-                                                placeholder="Name:">
+                                            <input type="hidden" name="post_id" value="{{$post->id}}">
+                                            <input class="form-control" type="text" name="name"
+                                                placeholder="Name:" value="{{old('name')}}">
+                                            <p style="color:red;">@error('name')*{{$message}}@enderror</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="mail" id="mail"
-                                                placeholder="Email:">
+                                            <input class="form-control" type="email" name="email"
+                                                placeholder="Email:" value="{{old('email')}}">
+                                            <p style="color:red;">@error('email')*{{$message}}@enderror</p>
                                         </div>
                                     </div>
                                 </div>
 
-
                                 <textarea class="form-control mb-3" name="comment" id="comment" cols="30" rows="5"
-                                    placeholder="Comment"></textarea>
+                                    placeholder="Write your comment here...">{{old('comment')}}</textarea>
+                                <p style="color:red;">@error('comment')*{{$message}}@enderror</p>
 
-                                <input class="btn btn-main btn-round-full" type="submit" name="submit-contact"
-                                    id="submit_contact" value="Submit Message">
+                                <input class="btn btn-main btn-round-full" type="submit" name="submit" value="Submit Comment">
                             </form>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">

@@ -54,3 +54,4 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('/', [publicController::class,'index'])->name('public.index');
     Route::get('category/{category_slug}', [publicController::class,'categoryPosts'])->name('public.category-posts');
     Route::get('{category_slug}/{post_slug}', [publicController::class,'viewpost'])->name('public.view-post');
+    Route::post('/comment-submit', [publicController::class,'commentSubmit'])->name('public.comment-submit');
